@@ -1,0 +1,17 @@
+[package]
+
+name = "neovim"
+version = "0.0.1"
+authors = ["Damien Radtke <damienradtke@gmail.com>"]
+
+description = "Support for writing Neovim plugins in Rust."
+repository = "https://github.com/dradtke/neovim-rs.git"
+# TODO: verify this path and publish documentation
+# documentation = "http://www.rust-ci.org/dradtke/neovim/doc/neovim/"
+keywords = ["neovim", "plugin"]
+license = "MIT"
+
+[dependencies]
+
+# We'll need this eventually, once it works again.
+# msgpack = "0.1.0"
