@@ -14,4 +14,7 @@ license = "MIT"
 [dependencies]
 
 # We'll need this eventually, once it works again.
-# msgpack = "0.1.0"
+#mpack = "0.0.3"
+
+[dependencies.mpack]
+path = "../mpack"
