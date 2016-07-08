@@ -1,4 +1,10 @@
 #![allow(dead_code, unused_variables)]
+//! `neovim` is a crate that enables building Neovim plugins with Rust.
+//!
+//! Neovim is a fork of Vim that enables fully asynchronous communication
+//! with plugins that run as external programs, communicating via Msgpack-RPC.
+//! This crate provides facilities for connecting to a Neovim instance
+//! and making API calls to take actions within the editor.
 
 extern crate mpack;
 
