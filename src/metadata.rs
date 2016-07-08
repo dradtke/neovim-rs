@@ -3,6 +3,7 @@ use std::convert;
 use std::error;
 use std::fmt;
 
+/// Type identifiers for certain types, determined at runtime.
 pub struct Metadata {
     pub buffer_id: i64,
     pub window_id: i64,
@@ -11,10 +12,15 @@ pub struct Metadata {
 
 #[derive(Debug)]
 pub enum GetMetadataError {
+    /// Attempted to retrieve metadata from a non-map value.
     NotAMap,
+    /// The map contains no `types` field.
     NoTypeInformation,
-    Invalid(String),
+    /// A requested `id` value could not be found.
     Missing(String),
+    /// A requested `id` value was found, but couldn't be parsed as an int.
+    Invalid(String),
+    /// Generic read error.
     ReadError(mpack::ReadError),
 }
 
@@ -54,7 +60,7 @@ impl Metadata {
     ///
     /// This method expects the value to represent this type of data structure:
     ///
-    /// ```
+    /// ```json
     /// {
     ///     "types": {
     ///         "Buffer":  { "id": <int> },
@@ -62,18 +68,11 @@ impl Metadata {
     ///         "Tabpage": { "id": <int> }
     ///     }
     /// }
+    /// ```
     ///
     /// It then pulls out the id values and stores them in the returned `Metadata` struct
     /// so that buffer, window, and tabpage values received from Neovim can be parsed
     /// appropriately.
-    ///
-    /// # Errors
-    ///
-    /// 1. `NotAMap`: the passed-in value doesn't represent a map.
-    /// 2. `NoTypeInformation`: the "types" object couldn't be found.
-    /// 3. `Missing(name)`: the id value indicated by `name` wasn't found.
-    /// 4. `Invalid(name)`: the id value indicated by `name` was found, but couldn't be parsed as an int.
-    /// ```
     pub fn new(metadata: Value) -> Result<Metadata, GetMetadataError> {
         let metadata = match metadata.map() {
             Ok(m) => m,

@@ -1,7 +1,6 @@
 [package]
-
 name = "neovim"
-version = "0.0.2"
+version = "0.1.0"
 authors = ["Damien Radtke <damienradtke@gmail.com>"]
 
 description = "Support for writing Neovim plugins in Rust."
@@ -12,4 +11,4 @@ keywords = ["neovim", "plugin"]
 license = "MIT"
 
 [dependencies]
-mpack = "0.1.1"
+mpack = "0.1.2"

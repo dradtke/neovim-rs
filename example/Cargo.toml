@@ -1,0 +1,10 @@
+[package]
+name = "example"
+version = "0.0.1"
+authors = ["Damien Radtke <code@getbraintree.com>"]
+
+[dependencies]
+mpack = "0.1.2"
+
+[dependencies.neovim]
+path = ".."
